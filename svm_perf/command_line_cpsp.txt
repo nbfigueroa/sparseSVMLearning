@@ -1,0 +1,6 @@
+Command to train and test CPSP algo
+% Execute the following command in terminal to learn the Sparse SVM
+./svm_perf_learn -c 100 -t 2 -g 50 --i 2 -w 9 --b 0 --k 100 ./robotCollision/2d_example.dat ./robotCollision/2d_model.dat
+
+% Execute the following command in terminal to test the learnt SVM
+./svm_perf_classify ./robotCollision/36d-13k-Collision-Fender-Testing.dat ./robotCollision/36d-13k-Collision-Fender-Model.dat ./robotCollision/36d-13k-Collision-Fender-Predictions.dat
