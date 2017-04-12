@@ -29,7 +29,22 @@ Typically, one finds the *optimal* hyper-parametersl i.e. C and sigma (for RBF K
 
 ### Other stuff
 #### Implementation of Cross-Training Algorithm
-In the script ```Xtraining.m``` I provide an implementation of the paper titled: [Breaking SVM Complexity with Cross-Training](https://is.tuebingen.mpg.de/fileadmin/user_upload/files/publications/pdf2846.pdf). It's one of the first algorithms (2005) to tackle SVM complexity issues. Wasn't really useful for my dataset, but might be useful for something else.
+I provide an implementation of the paper titled: [Breaking SVM Complexity with Cross-Training](https://is.tuebingen.mpg.de/fileadmin/user_upload/files/publications/pdf2846.pdf) in the script: 
+```
+Xtraining.m
+``` 
+It's one of the first algorithms (2005) to tackle SVM complexity issues. Wasn't really useful for my dataset, but might be useful for something else.
+
+### Testing of Sparse Modeling Approaches
+I test two sparse modeling approaches whose goal is to select a subset of data points as the representatives for a large collection of points, hence, reducing the number of points of a dataset. I provide testing scripts for the Sparse Modeling Representative Selection (SMRS) is an algorithm based on sparse multiple-measurement-vector recovery theory:
+```
+boundary_subset_selectino_smrs.m
+```
+and the Dissimilarity-based Sparse Subset Selection (DS3) 
+```
+boundary_subset_selectino_dissimilarity.m
+```
+Again, these algo's didn't really work on my self-collision avoidance dataset as they rely on a sort of clustering or similarity metrics, which will NOT work for completely overlapping classes. This might be useful for very large datasets of multi-class problems where the decision boundaries might be non-linear but there is not much overlap or outliers.
 
 ### References and Toolboxes
 - [libSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/)The standard library for SVM learning is libSVM: 
