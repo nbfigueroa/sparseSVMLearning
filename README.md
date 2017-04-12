@@ -32,4 +32,4 @@ Typically, one finds the *optimal* hyper-parametersl i.e. C and sigma (for RBF K
 - [ML_toolbox](https://github.com/epfl-lasa/ML_toolbox) Matlab toolbox used for teaching machine learning techniques at EPFL by N. Figueroa among others.
 - [GTSVM](http://ttic.uchicago.edu/~cotter/projects/gtsvm/) A GPU-Tailored Approach for Training Kernelized SVMs. Cotter el at.
 - [sparseSVM](https://www.cs.cornell.edu/people/tj/svm_light/svm_perf.html) Support Vector Machine for Multivariate Performance Measures by Joachims.
-- [sparse CPSP paper](https://pdfs.semanticscholar.org/0731/8220d7fe8de7a3e4ef9efc0dc9429c4a43d2.pdf) Sparse Kernel SVMs via Cutting-Plane Training. Joachims et al.
+- [sparse CPSP paper](https://pdfs.semanticscholar.org/0731/8220d7fe8de7a3e4ef9efc0dc9429c4a43d2.pdf) Sparse Kernel SVMs via Cutting-Plane Training. Joachims and Yu
