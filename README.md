@@ -12,14 +12,14 @@ These contain the necessary code snippets to find the optimal sets of hyper-para
 This implementation solves the dual QP problem with a type of SMO optimization, which yields accurate results but may take really long for large number of datapoints. The optimization is implemented in C++ but it has MATLAB mex interface to run them from Matlab. In my experience, I tried learning an SVM from 270k points and it took a couple of days to solve on a (not so old) PC.
 
 ### GPU-Accelerated Soft-Margin SVM learning
-This fast implementation of soft-margin SVM learning relies on exploiting the computational power of GPU's. Given the correct NVidia card, the algorithm is extremely fast! The scripts to test this are:
+This fast implementation of soft-margin SVM learning relies on exploiting the computational power of GPU's. Given the correct NVidia card, the algorithm is extremely fast! The script to test this is:
 ```
 boundary_learning_gtsvm.m
 ```
 NOTE: In order to achieve this efficiency the algorithm does some data clustering to reduce the number of sample points. If your data is completely overlapping, this might not given the same performance as the standard Soft-Margin SVM learning algorithm, so be careful! For the 2D dataset example it works very nicely, however, for our self-collision avoidance it just cannot reach the expected performance (in terms of classification rates). In other words, it's fast but less accurate. Check out the description of the algorithm and code here: [GTSVM](http://ttic.uchicago.edu/~cotter/projects/gtsvm/)
 
 ### Sparse Kernel SVM via Cuttting-Plane Training
-This is the sparse kernel SVM implementation that can handle datasets >100k points and relies on finding the optimal K support vectors, which are not necessarily points in the dataset. The scripts to test this are:
+This is the sparse kernel SVM implementation that can handle datasets >100k points and relies on finding the optimal K support vectors, which are not necessarily points in the dataset. The scripts to test this is:
 ```
 boundary_learning_gtsvm.m
 ```
