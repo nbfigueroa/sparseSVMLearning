@@ -1,7 +1,5 @@
 # sparseSVMLearning
-Multiple implementations for fast/efficient/sparse SVM learning. Also some data sparse coding toolboxes. 
-
-TODO: Fill-in description.
+Multiple implementations for fast/efficient/sparse SVM learning. Also some data sparse coding implementations. 
 
 ### Soft-Margin SVM learning
 To learn a standard SVM with the typical SMO-like optimization algorithm from [libSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/) and do grid search with k-fold cross-validation, please download the [ML_toolbox](https://github.com/epfl-lasa/ML_toolbox) and add it to your MATLAB search path. The scripts to test this are:
