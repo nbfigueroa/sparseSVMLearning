@@ -45,7 +45,7 @@ boundary_subset_selectino_dissimilarity.m
 Again, these algo's didn't really work on my self-collision avoidance dataset as they rely on a sort of clustering or similarity metrics, which will NOT work for completely overlapping classes. This might be useful for very large datasets of multi-class problems where the decision boundaries might be non-linear but there is not much overlap or outliers. The source code of both algo's is provided [here](http://www.ccs.neu.edu/home/eelhami/codes.htm)
 
 ### References and Toolboxes
-- [libSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/)The standard library for SVM learning is libSVM: 
+- [libSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/) The standard library for SVM learning is libSVM: 
 - [ML_toolbox](https://github.com/epfl-lasa/ML_toolbox) Matlab toolbox used for teaching machine learning techniques at EPFL by N. Figueroa among others.
 - [GTSVM](http://ttic.uchicago.edu/~cotter/projects/gtsvm/) A GPU-Tailored Approach for Training Kernelized SVMs. Cotter el at.
 - [sparseSVM](https://www.cs.cornell.edu/people/tj/svm_light/svm_perf.html) Support Vector Machine for Multivariate Performance Measures by Joachims.
