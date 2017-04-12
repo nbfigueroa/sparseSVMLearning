@@ -29,10 +29,10 @@ Typically, one finds the *optimal* hyper-parametersl i.e. C and sigma (for RBF K
 
 ### Other stuff
 #### Implementation of Cross-Training Algorithm
-In the script ```Xtraining.m``` I provide an implementation of the paper titled: [Breaking SVM Complexity with Cross-Training] (https://is.tuebingen.mpg.de/fileadmin/user_upload/files/publications/pdf2846.pdf). It's one of the first algorithms (2005) to tackle SVM complexity issues. Wasn't really useful for my dataset, but might be useful for something else.
+In the script ```Xtraining.m``` I provide an implementation of the paper titled: [Breaking SVM Complexity with Cross-Training](https://is.tuebingen.mpg.de/fileadmin/user_upload/files/publications/pdf2846.pdf). It's one of the first algorithms (2005) to tackle SVM complexity issues. Wasn't really useful for my dataset, but might be useful for something else.
 
 ### References and Toolboxes
-- The standard library for SVM learning is libSVM: https://www.csie.ntu.edu.tw/~cjlin/libsvm/
+- [libSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/)The standard library for SVM learning is libSVM: 
 - [ML_toolbox](https://github.com/epfl-lasa/ML_toolbox) Matlab toolbox used for teaching machine learning techniques at EPFL by N. Figueroa among others.
 - [GTSVM](http://ttic.uchicago.edu/~cotter/projects/gtsvm/) A GPU-Tailored Approach for Training Kernelized SVMs. Cotter el at.
 - [sparseSVM](https://www.cs.cornell.edu/people/tj/svm_light/svm_perf.html) Support Vector Machine for Multivariate Performance Measures by Joachims.
