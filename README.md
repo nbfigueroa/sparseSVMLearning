@@ -34,7 +34,7 @@ Xtraining.m
 It's one of the first algorithms (2005) to tackle SVM complexity issues. Wasn't really useful for my dataset, but might be useful for something else.
 
 ### Testing of Sparse Modeling Approaches
-I test two sparse modeling approaches whose goal is to select a subset of data points as the representatives for a large collection of points, hence, reducing the number of points of a dataset. I provide testing scripts for the Sparse Modeling Representative Selection [(SMRS)](http://www.ccs.neu.edu/home/eelhami/publications/SMRS-CVPR12-Ehsan.pdf) is an algorithm based on sparse multiple-measurement-vector recovery theory:
+I test two sparse modeling approaches whose goal is to select a subset of data points as the representatives for a large collection of points, hence, reducing the number of points of a dataset. I provide testing scripts for the Sparse Modeling Representative Selection [(SMRS)](http://www.ccs.neu.edu/home/eelhami/publications/SMRS-CVPR12-Ehsan.pdf) which is an algorithm based on sparse multiple-measurement-vector recovery theory:
 ```
 boundary_subset_selectino_smrs.m
 ```
