@@ -7,7 +7,7 @@ To learn a standard SVM with the typical SMO-like optimization algorithm from [l
 boundary_learning_2d.m
 boundary_learning_robots.m
 ```
-These contain the necessary code snippets to find the optimal sets of hyper-parameters for a 2D toy problem and for the real Big-Data self-collision avoidance dataset, which have to be downloaded found [here](https://www.dropbox.com/s/y0xi36i4ezwoqfo/data_mat.zip?dl=0)
+These contain the necessary code snippets to find the optimal sets of hyper-parameters for a 2D toy problem and for the real Big-Data self-collision avoidance dataset, which has to be downloaded found [here](https://www.dropbox.com/s/y0xi36i4ezwoqfo/data_mat.zip?dl=0)
 
 This implementation solves the dual QP problem with a type of SMO optimization, which yields accurate results but may take really long for large number of datapoints. The optimization is implemented in C++ but it has MATLAB mex interface to run them from Matlab. In my experience, I tried learning an SVM from 270k points and it took a couple of days to solve on a (not so old) PC.
 
