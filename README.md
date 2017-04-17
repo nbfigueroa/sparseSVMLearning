@@ -21,7 +21,7 @@ NOTE: In order to achieve this efficiency the algorithm does some data clusterin
 ### Sparse Kernel SVM via Cuttting-Plane Training
 This is the sparse kernel SVM implementation that can handle datasets >100k points and relies on finding the optimal K support vectors, which are not necessarily points in the dataset. The scripts to test this is:
 ```
-boundary_learning_gtsvm.m
+boundary_learning_sparse_CPSP.m
 ```
 Typically, one finds the *optimal* hyper-parametersl i.e. C and sigma (for RBF Kernel) with either of the previous implementations. Then we use these same parameters and set the support vector budget K to our desired value. This algorithm will try to find the hyper-plane that yields the best performance (in terms of classification rate) given the support vector budget K.  Check out the description of the algorithm and code here: [sparseSVM](https://www.cs.cornell.edu/people/tj/svm_light/svm_perf.html) and [sparse CPSP paper](https://pdfs.semanticscholar.org/0731/8220d7fe8de7a3e4ef9efc0dc9429c4a43d2.pdf)
 
