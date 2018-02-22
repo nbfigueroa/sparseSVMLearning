@@ -1,0 +1,4 @@
+--- Dual-Arm SCA Boundary Learning Tutorial ---
+
+1. Generate a dataset using this package:
+ Input: DH parameters of your dual-arm robotic setting

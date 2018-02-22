@@ -1,14 +1,17 @@
-function [X, y, X_test, y_test] = LoadCollisionDatasets(dataset_name)
+function [X, y, X_test, y_test] = LoadCollisionDatasets(dataset_name, sample_col)
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Prepare Collision Region Dataset for Learning %%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-tmp_r1 = importfile_debug(strcat(dataset_name, '/position1_colided01.txt'));
-tmp_r2 = importfile_debug(strcat(dataset_name,'/position2_colided01.txt'));
+
+colided1_fname = strcat(dataset_name, '/position1_colided01.txt');
+colided2_fname = strcat(dataset_name,'/position2_colided01.txt');
+tmp_r1 = importfile_debug(colided1_fname);
+tmp_r2 = importfile_debug(colided2_fname);
 
 fprintf('Collided Points: %d \n', size(tmp_r1,1));
 % Sub-sample Dataset for Training Set
-sample_col = 2;
+% sample_col = 2;
 R1 = tmp_r1(1:sample_col:end,:);
 R2 = tmp_r2(1:sample_col:end,:);
 

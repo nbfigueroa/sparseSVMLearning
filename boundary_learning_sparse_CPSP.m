@@ -52,6 +52,17 @@ Gamma = 1/(2*options.sigma^2)
 svmlwrite('./svm_perf/robotCollision/36d-811k-Collision-Fender-Points.dat', X_train, y_train)
 svmlwrite('./svm_perf/robotCollision/36d-811k-Collision-Fender-Testing.dat', X_test(1:testSamples,:), y_test(1:testSamples,:))
 
+%% Train sparse SVM via CSPS
+% For now this is done in the command line.. I will change it later to a
+% more matlab-friendly way
+
+% Command to train and test CPSP algo
+% Execute the following command in terminal to learn the Sparse SVM
+% ./svm_perf_learn -c 100 -t 2 -g 50 --i 2 -w 9 --b 0 --k 100 ./robotCollision/2d_example.dat ./robotCollision/2d_model.dat
+
+% Execute the following command in terminal to test the learnt SVM
+% ./svm_perf_classify ./robotCollision/36d-13k-Collision-Fender-Testing.dat ./robotCollision/36d-13k-Collision-Fender-Model.dat ./robotCollision/36d-13k-Collision-Fender-Predictions.dat
+
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Test Performance of Sparse SVM learnt via CPSP %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +83,6 @@ end
 
 % Dataset Sizes
 M = [ 67000 130000 270000 540000 ];
-
 
 %% Compute Error Rates for each model on test set
 ACC = zeros(1,nPredictions);

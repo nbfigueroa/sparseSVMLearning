@@ -1,20 +1,42 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Load COLLISION/NON-COLLISION REGION DATA (20 deg resolution) %
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- clear all; close all; clc;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Load COLLISION/NON-COLLISION REGION DATA (20 deg resolution)       %                                                                         %                                                                       
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Choose A Dataset 
-% dataset_name = './data/Fender'; % For Fender Test (20deg Sampling interval)
-% dataset_name = './data/New_25'; % For Fender Test (25deg Sampling interval including hands)
-% dataset_name = './data/fOR_TEST'; % For Joint Collision Testing (Arms closer)
+clear all; close all; clc;
 
-% KUKA Innovation Award Dataset
-% dataset_name = './collisionDatasets/data/New_innovation_award'; % For Joint Collision Testing (Arms closer)
-% [X, y, X_test, y_test] = LoadCollisionDatasets(dataset_name);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%                 Dataset loading options                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+load_option = 1; % 0: Loads joint positions from text files, randomly samples 
+                 % 'sample_col' of the dataset and generates training and testing sets
+                 % by splitting the dataset in 1/2 for EACH Class: collided (y=-1) / non-collided (y=+1)   
+                 % 1: Loads a mat file with the dataset as above  
 
-% OR Load Pre-prepared mat files
-load('./collisionDatasets/data_mat/Innovation_Award_Dataset.mat')
+sample_col = 2;  % Variable to set the sub-sampling size of dataset, should be in integers
+                 % i.e. 1/sample_col will be extracted   
+                 
+switch load_option
+    case 0
+        % For Joint Collision Testing (Arms closer)
+        % dataset_name = '../function_learning/collisionDatasets/data/fOR_TEST';
+        
+        % KUKA Innovation Award Setup
+        % dataset_name = '../function_learning/collisionDatasets/data/New_innovation_award';
+        
+        % New LASA lab Dual-Arm IIWA setup (Feb 2018)
+        dataset_name = '../function_learning/collisionDatasets/data/New_IIWA_Setup_Feb18';        
+        
+        [X, y, X_test, y_test] = LoadCollisionDatasets(dataset_name, sample_col);
 
+    case 1
+        % KUKA Innovation Award Setup
+        % dataset_name = '../function_learning/collisionDatasets/data_mat/Innovation_Award_Dataset.mat';
+        
+        % New LASA lab Dual-Arm IIWA setup (Feb 2018)
+        dataset_name = '../function_learning/collisionDatasets/data_mat/New_IIWA_Setup_Feb18_Dataset.mat';        
+        load(dataset_name)
+end
+ 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Partition Dataset into Train+Validation/Test %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
