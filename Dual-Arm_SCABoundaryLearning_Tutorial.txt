@@ -1,4 +1,40 @@
 --- Dual-Arm SCA Boundary Learning Tutorial ---
 
 1. Generate a dataset using this package:
- Input: DH parameters of your dual-arm robotic setting
+
+https://github.com/sinamr66/SCA_data_construction
+
+Follow the instructions in the README file, you should modify the following input paramaters:
+- Sampling resolution (joint angle increment, the 'resolution' variable is a multipler for 10 deg increments, i.e. resolution=2 gives a 20deg increment)
+- Location of the robot bases wrt to each other
+- DH parameters of the manipulators
+- Joint workspace constraints, if any. 
+
+This will generate a folder ./data which contains text files for the collided (y=-1) and non-collided (y=+1) joint configurations in form of the 3D positions of all joints wrt. one of the robot bases (the one defined as the origin x = [0 0 0]). This is the feature space that the SCA Boundary is learned in, if you have N joints (for all robots) your feature vector is \xi \in R^{N*3}.
+
+2. Install dependencies for SCABoundary-Learning package
+- ML_toolbox: We use the cross-validation/grid-search functions + standard SVM learning (from libSVM libary).
+
+3. Search for optimal hyper-parameters doing cross-validation with standard soft-margin SVM
+boundary_learning_robots.m
+
+This will generate the optimal hyper-parameters that achieve the highest TPR and lowest FPR.
+
+3. Learn a sparse SVM via Cuttting-Plane Training 
+Using the optimal hyper-parameters learned from the previous, you will now train a sparse SVM with a support vector budget K, this is set to default = 3,000. 
+
+boundary_learning_sparse_CSPS.m
+
+4. To evaluate your learnt sparse SVM, we now generate a model for SVMGrad package and test it
+
+https://github.com/nbfigueroa/SVMGrad
+
+Follow the instructions in the README file. 
+
+Must write instructions for this...
+
+5. Test it on the real robots using the IJRR testing package, this can be done in simulation.
+
+https://github.com/sinamr66/IJRR
+
+Must write instructions for this...
