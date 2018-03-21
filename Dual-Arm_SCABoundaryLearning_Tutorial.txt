@@ -12,6 +12,12 @@ Follow the instructions in the README file, you should modify the following inpu
 
 This will generate a folder ./data which contains text files for the collided (y=-1) and non-collided (y=+1) joint configurations in form of the 3D positions of all joints wrt. one of the robot bases (the one defined as the origin x = [0 0 0]). This is the feature space that the SCA Boundary is learned in, if you have N joints (for all robots) your feature vector is \xi \in R^{N*3}.
 
+Tips: If the analyze_dataset.cpp node seg-faults, this means that your swap partition is not big enough to load the entire dataset on the working memory. The fix is to increase your swap size.
+
+To do this follow the instructions here:
+https://www.digitalocean.com/community/questions/how-to-change-swap-size-on-ubuntu-14-04
+
+
 2. Install dependencies for SCABoundary-Learning package
 - ML_toolbox: We use the cross-validation/grid-search functions + standard SVM learning (from libSVM libary).
 
@@ -20,10 +26,18 @@ boundary_learning_robots.m
 
 This will generate the optimal hyper-parameters that achieve the highest TPR and lowest FPR.
 
-3. Learn a sparse SVM via Cuttting-Plane Training 
-Using the optimal hyper-parameters learned from the previous, you will now train a sparse SVM with a support vector budget K, this is set to default = 3,000. 
+Note: The training stage in is not linearly increasing, i.e. a sample size of 12k point takes around 1 day, while a sample size of 24k take around 3 days.
 
-boundary_learning_sparse_CSPS.m
+3. Learn a sparse SVM via Cuttting-Plane Training 
+Using the optimal hyper-parameters learned from the previous step, you will now train a sparse SVM with a support vector budget K, this is set to default = 3,000. 
+
+boundary_learning_sparse_CSPS_2D.m
+
+boundary_learning_sparse_CSPS_robots.m
+
+Once you've followed all the steps, 
+
+
 
 4. To evaluate your learnt sparse SVM, we now generate a model for SVMGrad package and test it
 

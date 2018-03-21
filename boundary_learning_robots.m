@@ -1,12 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%      Load COLLISION/NON-COLLISION REGION DATA (20 deg resolution)       %                                                                         %                                                                       
+%%                LEARN COLLISION/NON-COLLISION REGION DATA               %                                                                       
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-clear all; close all; clc;
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%           STEP 1: LOAD DATASET                %
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear all; close all; clc;
 load_option = 1; % 0: Loads joint positions from text files, randomly samples 
                  % 'sample_col' of the dataset and generates training and testing sets
                  % by splitting the dataset in 1/2 for EACH Class: collided (y=-1) / non-collided (y=+1)   
@@ -20,19 +19,18 @@ switch load_option
         % For Joint Collision Testing (Arms closer)
         % dataset_name = '../function_learning/collisionDatasets/data/fOR_TEST';
         
-        % KUKA Innovation Award Setup
+        % KUKA Innovation Award Setup - 20 deg resolution
         % dataset_name = '../function_learning/collisionDatasets/data/New_innovation_award';
         
-        % New LASA lab Dual-Arm IIWA setup (Feb 2018)
-        % dataset_name = '../function_learning/collisionDatasets/data/New_IIWA_Setup_Feb18';        
-        
+        % New LASA lab Dual-Arm IIWA setup (Feb 2018) - 40 deg resolution
+%         dataset_name = '../function_learning/collisionDatasets/data/New_IIWA_Setup_Feb18';                
         [X, y, X_test, y_test] = LoadCollisionDatasets(dataset_name, sample_col);
 
     case 1
         % KUKA Innovation Award Setup - with sample_col = 2
         % dataset_name = '../function_learning/collisionDatasets/data_mat/Innovation_Award_Dataset.mat';
         
-        % New LASA lab Dual-Arm IIWA setup (Feb 2018) - with sample_col = 1
+        % New LASA lab Dual-Arm IIWA setup (Feb 2018) - with sample_col = 1 - 40 deg resolution
         dataset_name = '../function_learning/collisionDatasets/data_mat/New_IIWA_Setup_Feb18_Dataset.mat';        
         load(dataset_name)
 end
@@ -73,7 +71,7 @@ weight_btw_sep = 0.95;
 clear options
 options.svm_type   = 0;             % SVM Type (0:C-SVM, 1:nu-SVM)
 options.limits_C   = [10^-1, 10^4]; % Limits of penalty C
-options.limits_w   = [0.1, 2.5];      % Limits of kernel width \sigma
+options.limits_w   = [0.05, 2];     % Limits of kernel width \sigma
 options.steps      = 10;            % Step of parameter grid 
 options.K          = 5;             % K-fold CV parameter
 options.log_grid   = 1;             % Log-Spaced grid of Parameter Ranges
@@ -94,7 +92,7 @@ stats = ml_get_cv_grid_states(ctest,ctrain);
 
 % Visualize Grid-Search Heatmap
 cv_plot_options              = [];
-cv_plot_options.title        = strcat('36-D, 12k (KUKA Innovation Award) --Joint Positions f(q)-- C-SVM :: Grid Search with RBF');
+cv_plot_options.title        = strcat('36-D, 24k (NEW KUKA IIWA SETUP) --Joint Positions f(q)-- C-SVM :: Grid Search with RBF');
 cv_plot_options.param_names  = {'C', '\sigma'};
 cv_plot_options.param_ranges = [range_C ; range_w];
 cv_plot_options.log_grid     = 1; 
@@ -116,8 +114,8 @@ w_opt = range_w(w_max)
 clear options
 % Optimal Values from CV on Xk dataset
 options.svm_type    = 0;    % 0: C-SVM, 1: nu-SVM
-options.C           = 16.6; % Misclassification Penalty
-options.sigma       = 0.5;  % radial basis function: exp(-gamma*|u-v|^2), gamma = 1/(2*sigma^2)
+options.C           = 16.6810; % Misclassification Penalty
+options.sigma       = 0.171;  % radial basis function: exp(-gamma*|u-v|^2), gamma = 1/(2*sigma^2)
 
 % Train SVM Classifier (12k+3D pts = 8s,....)
 tic;
@@ -145,7 +143,7 @@ fprintf('*Classifier Performance on Train set (%d points)* \n Acc: %1.5f, F-1: %
 %%     Evaluate SVM performance on Testing Set   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Extract a random testing points 
-maxSamples = 10000;
+maxSamples = 100000;
 if length(y_test) < maxSamples
     numSamples = length(y_test);
 else

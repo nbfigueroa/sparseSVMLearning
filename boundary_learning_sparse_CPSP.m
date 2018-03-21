@@ -8,7 +8,13 @@ X_train = X; y_train = labels;
 
 %% 36D Real Robot Collision Data
 clear all; close all;
-load('Fender-Collision-Avoidance-Dataset.mat')
+
+% KUKA Innovation Award Setup - with sample_col = 2
+% dataset_name = '../function_learning/collisionDatasets/data_mat/Innovation_Award_Dataset.mat';
+
+% New LASA lab Dual-Arm IIWA setup (Feb 2018) - with sample_col = 1 - 40 deg resolution
+dataset_name = '../function_learning/collisionDatasets/data_mat/New_IIWA_Setup_Feb18_Dataset.mat';
+load(dataset_name)
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Partition Dataset into Train+Validation/Test %%
